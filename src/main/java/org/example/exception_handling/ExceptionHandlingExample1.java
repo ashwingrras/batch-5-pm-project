@@ -90,6 +90,8 @@ public class ExceptionHandlingExample1
             System.out.println("exception message "+e.getMessage());
         }
         System.out.println("after validate");
+
+        callingCustomException();
     }
 
     public static int sum(String a, String b)
@@ -195,7 +197,8 @@ public class ExceptionHandlingExample1
             throw new UserDefinedException("Hello, i am a custom exception");
         } catch (UserDefinedException e)
         {
-            throw new RuntimeException(e);
+            System.out.println("at UserDefinedException, message "+e.getMessage());
+            //throw new RuntimeException(e);
         }
 
     }
