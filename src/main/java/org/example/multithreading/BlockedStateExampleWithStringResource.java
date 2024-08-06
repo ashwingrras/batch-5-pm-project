@@ -41,7 +41,7 @@ class TaskBlocked implements Runnable {
     }
 
     @Override
-    synchronized public void run()
+    public void run()
     {
         synchronized (sharedResource)
         {
