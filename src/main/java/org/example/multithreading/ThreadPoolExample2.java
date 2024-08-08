@@ -9,7 +9,7 @@ public class ThreadPoolExample2 {
         // Create a thread pool with 1 threads
         ExecutorService executor = Executors.newFixedThreadPool(2);
         // Submit 5 tasks to the thread pool
-        for (int i = 1; i <= 5; i++)
+        for (int i = 1; i <= 10; i++)
         {
             Runnable task = new WorkerTask(i);
             executor.submit(task);
@@ -30,7 +30,8 @@ class WorkerTask implements Runnable {
     @Override
     public void run() {
         System.out.println("Task " + taskId + " is running on thread " + Thread.currentThread().getName());
-        try {
+        try
+        {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();

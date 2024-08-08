@@ -1,5 +1,7 @@
 package org.example.multithreading;
 
+import java.util.Date;
+
 /*
 
 The flag variable is declared as volatile.
@@ -11,7 +13,7 @@ volatile does not guarantee atomicity. For instance, incrementing a volatile
  */
 public class VolatileThreadExample {
     //private static volatile boolean flag = false;
-    private static volatile boolean flag = false;
+    private static boolean flag = false;
 
     public static void main(String[] args) {
 
@@ -28,11 +30,14 @@ public class VolatileThreadExample {
 
         Thread readerThread = new Thread(() -> {
             System.out.println("flag inside readerThread "+flag);
+            Date startDate = new Date();
             while (!flag)
             { // Loop until flag becomes true
                 // Busy-wait
                 System.out.println(flag);
             }
+            System.out.println("start time "+ startDate);
+            System.out.println("end time "+ new  Date());
             System.out.println("Reader thread detected flag change to true");
         });
 

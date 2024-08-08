@@ -3,8 +3,12 @@ package org.example.multithreading;
 class Threaddemo1 extends Thread{
     private String name1 = "Resource 1";
     private String name2 = "Resource 2";
-   public void run(){
-       synchronized(name1){
+   public void run()
+   {
+       System.out.println("at run method thread1 start");
+       // synchronized block
+       synchronized(name1)
+       {
         System.out.println("Thread 1 holding : " +name1);
         try
         {
@@ -12,19 +16,25 @@ class Threaddemo1 extends Thread{
         } catch (Exception e) {
             // TODO: handle exception
         }
-        synchronized(name2)
-        {
-            System.out.println("Thread 1 holding : " +name2);
-        }
-        //
+           // synchronized block
+            synchronized(name2)
+            {
+                System.out.println("Thread 1 holding : " +name2);
+                //end
+            }
+        //end
        }
        //
+       System.out.println("at run method thread1 end");
    }
 }
 class Threaddemo2 extends Thread{
     private String name1 = "Resource 1";
     private String name2 = "Resource 2";
-   public void run(){
+   public void run()
+   {
+       System.out.println("at run method thread2 start");
+       // synchronized block
        synchronized(name2)
        { // name1
         System.out.println("Thread 2 holding : " +name2);
@@ -34,18 +44,19 @@ class Threaddemo2 extends Thread{
         } catch (Exception e) {
             // TODO: handle exception
         }
-        synchronized(name1)
-        { // name2
-            System.out.println("Thread 2 holding : " +name1);
-        }
+           // synchronized block
+            synchronized(name1)
+            { // name2
+                System.out.println("Thread 2 holding : " +name1);
+            }
        }
+       System.out.println("at run method thread2 end");
    }
 }
 public class DeadlockDemo {
    
     public static void main(String[] args) 
     {
-
         Threaddemo1 d1  = new Threaddemo1();
         Threaddemo2 d2  = new Threaddemo2();
         d1.start();
@@ -59,7 +70,7 @@ public class DeadlockDemo {
             Thread.sleep(2000);
             System.out.println("d1: "+d1.getState());
             System.out.println("d2: "+d2.getState());
-            //d1.join();
+            d1.join();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
